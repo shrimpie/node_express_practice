@@ -1,0 +1,14 @@
+{
+  "name": "expressjs",
+  "version": "0.0.1",
+  "description": "Learn node express with Ray Villalobos @Lynda.com",
+  "main": "app/app.js",
+  "scripts": {
+    "start": "node app/app.js"
+  },
+  "author": "Andy Yang",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
