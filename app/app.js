@@ -6,6 +6,8 @@ var app = express();
 var dataFile = require('./data/data.json');
 app.set('appData', dataFile);
 
+app.use(express.static('app/public'));
+
 // You can specify port too.
 app.set('port', process.env.PORT || 3000);
 
