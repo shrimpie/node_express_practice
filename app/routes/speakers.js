@@ -3,24 +3,21 @@ var router = express.Router();
 
 
 router.get('/speakers', function(req, res) {
-	var info = '';
-	var dataFile = req.app.get('appData');
-	dataFile.speakers.forEach(function(item) {
-		info += `
-		<li>
-		  <h2>${item.name}</h2>
-		  <img src="/images/speakers/${item.shortname}_tn.jpg" alt="speaker">
-		  <p>${item.summary}</p>
-		</li>
-		`;
+	var data = req.app.get('appData');
+	var pagePhotos = [];
+
+	var pageSpeakers = data.speakers;
+
+	data.speakers.forEach(function(item) {
+		pagePhotos = pagePhotos.concat(item.artwork);
 	});
 
-	res.send(`
-		<link rel="stylesheet" type="text/css" href="/css/style.css">
-		<h1>Roux Academy Meetups</h1>
-		${info}
-		<script src="/reload/reload.js"></script>
-	`);
+	res.render('speakers',{
+		pageTitle: 'Speakers',
+		pageID: 'speakers',
+		artwork: pagePhotos,
+		speakers: pageSpeakers
+	});
 });
 
 router.get('/speakers/:speakerid', function(req, res) {
